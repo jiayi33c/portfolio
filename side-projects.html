@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Side Projects - Chen Jiayi</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #142137 0%, #173b5c 100%);
+    }
+
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(to bottom, #142137 0%, #173b5c 100%);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 50px 40px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: #5dade2;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .back-link:hover {
+      color: #3498db;
+      text-decoration: underline;
+    }
+
+    .back-link::before {
+      content: "← ";
+      margin-right: 5px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      background: linear-gradient(to bottom, #142137 0%, #173b5c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .summary-section {
+      margin: 40px 0;
+      padding: 30px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      border-left: 4px solid #5dade2;
+    }
+
+    .summary-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .summary-section p {
+      color: #555;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .report-section {
+      margin: 40px 0;
+      padding: 30px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      border-left: 4px solid #5dade2;
+    }
+
+    .report-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .pdf-viewer-container {
+      position: relative;
+      width: 100%;
+      height: 900px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #f5f5f5;
+    }
+
+    .pdf-viewer-wrapper {
+      position: relative;
+      width: 100%;
+      height: calc(100% - 50px);
+      overflow: hidden;
+    }
+
+    .pdf-viewer-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: #f5f5f5;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .pdf-viewer-container iframe {
+      position: absolute;
+      top: -50px;
+      left: 0;
+      width: 100%;
+      height: calc(100% + 100px);
+      border: none;
+    }
+
+    .pdf-controls {
+      background: #f8f9fa;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .pdf-controls button {
+      padding: 6px 12px;
+      background: #5dade2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    .pdf-controls button:hover {
+      background: #3498db;
+    }
+
+    .pdf-controls input[type="number"] {
+      width: 60px;
+      padding: 4px 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .report-embed {
+      width: 100%;
+      height: calc(100% - 50px);
+      border: none;
+    }
+
+    .pdf-viewer-wrapper {
+      position: relative;
+      width: 100%;
+      height: calc(100% - 50px);
+      overflow: hidden;
+    }
+
+    .pdf-viewer-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: #f5f5f5;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .pdf-viewer-container .pdf-viewer-wrapper iframe {
+      margin-top: -50px;
+      height: calc(100% + 50px);
+    }
+
+    .report-download {
+      display: inline-block;
+      padding: 12px 24px;
+      background: linear-gradient(to bottom, #5dade2 0%, #3498db 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(93, 173, 226, 0.3);
+      margin-top: 15px;
+    }
+
+    .report-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(93, 173, 226, 0.4);
+    }
+
+    .report-download::after {
+      content: " ↓";
+      margin-left: 5px;
+    }
+
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 20px;
+        margin: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .summary-section,
+      .report-section {
+        padding: 20px;
+      }
+
+      .pdf-viewer-container {
+        height: 600px;
+      }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+  <div class="container">
+    <a href="index.html" class="back-link">Back to Portfolio</a>
+    
+    <h1>Side Projects</h1>
+
+    <div class="report-section">
+      <h2>Interactive 3D Visualization</h2>
+      <p style="margin-bottom: 20px; color: #666; font-style: italic;">An interactive 3D visualization illustrating the concept of infinity, featuring randomized "number stars" placed in 3D space using polar coordinates. The lemniscate itself is formed by numbers that change every second, with their colours also randomized. The piece is implemented in ChucK and ChuGL.</p>
+      
+      <div style="margin: 25px 0;">
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <iframe 
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/AHmi277GvrI"
+            title="Interactive 3D Visualization"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+          </iframe>
+        </div>
+        <p style="margin-top: 10px; text-align: center; color: #666; font-size: 14px;">
+          <a href="https://youtu.be/AHmi277GvrI" target="_blank" style="color: #5dade2; text-decoration: none;">Open in YouTube ↗</a>
+        </p>
+      </div>
+      
+      <p style="margin-top: 15px;">Download the source code file below.</p>
+      
+      <div style="margin-top: 15px;">
+        <a href="ex.ck" class="report-download" download>Download Code</a>
+      </div>
+    </div>
+
+    <div class="report-section">
+      <h2>Modelling the Cables of the Sentosa Suspension Bridge: Parabola or Catenary?</h2>
+      <p style="margin-bottom: 20px; color: #666; font-style: italic;">Used geometric methods to model the shape of the suspension bridge in Sentosa.</p>
+      <p>You can view the full details below or download the PDF.</p>
+      
+      <div style="margin-bottom: 15px;">
+        <a href="Math IA.pdf" class="report-download" download="Sentosa_Bridge_Analysis.pdf">Download PDF</a>
+      </div>
+      
+      <div class="pdf-viewer-container">
+        <div class="pdf-controls">
+          <button onclick="zoomOut('pdf-viewer-1')">-</button>
+          <input type="number" id="zoom-level-1" value="100" min="50" max="200" step="10" onchange="setZoom('pdf-viewer-1', this.value)">
+          <button onclick="zoomIn('pdf-viewer-1')">+</button>
+          <span style="margin-left: auto; color: #666; font-size: 14px;">
+            Use scroll to navigate • Click download to save
+          </span>
+        </div>
+        <div class="pdf-viewer-wrapper">
+          <iframe 
+            id="pdf-viewer-1"
+            src="Math IA.pdf#toolbar=0&navpanes=0&view=FitH&zoom=page-fit" 
+            title="Modelling the Cables of the Sentosa Suspension Bridge: Parabola or Catenary?">
+            <p>Your browser does not support PDFs. <a href="Math IA.pdf" class="report-download">Download the report instead</a>.</p>
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-section">
+      <h2>Analysis of the Normal Distribution for Assessing Student Performance</h2>
+      <p style="margin-bottom: 20px; color: #666; font-style: italic;">Modelled test scores from three subjects using z scores to compare performance across subjects and show how skewed data can change the result.</p>
+      <p>You can view the full details below or download the PDF.</p>
+      
+      <div style="margin-bottom: 15px;">
+        <a href="Chen Jiayi_ IB2M_HLMathsIA1stTurnitin_T1W9Y2020.pdf" class="report-download" download="Normal_Distribution_Analysis.pdf">Download PDF</a>
+      </div>
+      
+      <div class="pdf-viewer-container">
+        <div class="pdf-controls">
+          <button onclick="zoomOut('pdf-viewer-2')">-</button>
+          <input type="number" id="zoom-level-2" value="100" min="50" max="200" step="10" onchange="setZoom('pdf-viewer-2', this.value)">
+          <button onclick="zoomIn('pdf-viewer-2')">+</button>
+          <span style="margin-left: auto; color: #666; font-size: 14px;">
+            Use scroll to navigate • Click download to save
+          </span>
+        </div>
+        <div class="pdf-viewer-wrapper">
+          <iframe 
+            id="pdf-viewer-2"
+            src="Chen Jiayi_ IB2M_HLMathsIA1stTurnitin_T1W9Y2020.pdf#toolbar=0&navpanes=0&view=FitH&zoom=page-fit" 
+            title="Analysis of the Normal Distribution for Assessing Student Performance">
+            <p>Your browser does not support PDFs. <a href="Chen Jiayi_ IB2M_HLMathsIA1stTurnitin_T1W9Y2020.pdf" class="report-download">Download the report instead</a>.</p>
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="background.js"></script>
+  <script>
+    function zoomIn(viewerId) {
+      const viewer = document.getElementById(viewerId);
+      const zoomInput = document.getElementById(viewerId === 'pdf-viewer-1' ? 'zoom-level-1' : 'zoom-level-2');
+      let currentZoom = parseInt(zoomInput.value) || 100;
+      currentZoom = Math.min(200, currentZoom + 10);
+      zoomInput.value = currentZoom;
+      setZoom(viewerId, currentZoom);
+    }
+
+    function zoomOut(viewerId) {
+      const viewer = document.getElementById(viewerId);
+      const zoomInput = document.getElementById(viewerId === 'pdf-viewer-1' ? 'zoom-level-1' : 'zoom-level-2');
+      let currentZoom = parseInt(zoomInput.value) || 100;
+      currentZoom = Math.max(50, currentZoom - 10);
+      zoomInput.value = currentZoom;
+      setZoom(viewerId, currentZoom);
+    }
+
+    function setZoom(viewerId, zoom) {
+      const viewer = document.getElementById(viewerId);
+      const zoomValue = parseInt(zoom) || 100;
+      const currentSrc = viewer.src.split('#')[0];
+      viewer.src = currentSrc + `#zoom=${zoomValue}`;
+    }
+  </script>
+</body>
+</html>
+
