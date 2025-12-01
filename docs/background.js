@@ -3,8 +3,10 @@ const canvas = document.getElementById('bg-canvas');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+// Set ideal canvas size (limit pixel ratio for performance)
+const pixelRatio = Math.min(window.devicePixelRatio, 2);
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setPixelRatio(pixelRatio);
 
 camera.position.z = 5;
 camera.position.y = 0;
@@ -79,30 +81,7 @@ function updateTextSprite(sprite, text) {
   texture.needsUpdate = true;
 }
 
-// Create infinity sign (lemniscate) with numbers
-const NUM_LEMNISCATE = 200;
-const lemniscateSprites = [];
-const lemniscateGlow = [];
-const size = 1.5;
-
-for (let i = 0; i < NUM_LEMNISCATE; i++) {
-  const angle = (i / NUM_LEMNISCATE) * Math.PI * 2;
-  const denom = 1 + Math.pow(Math.sin(angle), 2);
-  const x = (size / 2.0) * Math.cos(angle) / denom;
-  const y = (size / 2.0) * Math.sin(angle) * Math.cos(angle) / denom;
-  const z = (size / 2.0) * 0.13 * Math.sin(angle);
-
-  const num = (i % 100).toString();
-  const sprite = createTextSprite(num, 0.1);
-  sprite.position.set(x, y, z);
-  scene.add(sprite);
-  lemniscateSprites.push(sprite);
-
-  const glowSprite = createTextSprite(num, 0.4, true);
-  glowSprite.position.set(x, y, z);
-  scene.add(glowSprite);
-  lemniscateGlow.push(glowSprite);
-}
+// Infinity sign removed - only number stars remain
 
 // Create random number stars
 const NUM_STARS = 200;
@@ -135,53 +114,17 @@ function animate() {
   requestAnimationFrame(animate);
   frameCount++;
 
-  // Rotate camera around Y axis
-  const time = frameCount * 0.01;
-  camera.position.x = Math.sin(time * 0.3) * 2;
-  camera.position.z = Math.cos(time * 0.3) * 2;
+  // Rotate camera around Y axis (slowed down)
+  const time = frameCount * 0.005;
+  camera.position.x = Math.sin(time * 0.2) * 2;
+  camera.position.z = Math.cos(time * 0.2) * 2;
   camera.lookAt(0, 0, 0);
 
-  // Animate lemniscate
-  for (let i = 0; i < NUM_LEMNISCATE; i++) {
-    const t = (frameCount + i * 5) * 0.01;
+  // Animate stars (slowed down)
+  for (let i = 0; i < NUM_STARS; i++) {
+    const t = (frameCount + i * 8) * 0.003;
     const a = Math.sin(t) * 0.5 + 0.5;
     const hue = (Math.sin(t * 0.3) * 0.5 + 0.5) % 1;
-    
-    // Convert hue to RGB
-    const h = hue * 6;
-    const c = 1;
-    const x = c * (1 - Math.abs((h % 2) - 1));
-    let r, g, b;
-    if (h < 1) { r = c; g = x; b = 0; }
-    else if (h < 2) { r = x; g = c; b = 0; }
-    else if (h < 3) { r = 0; g = c; b = x; }
-    else if (h < 4) { r = 0; g = x; b = c; }
-    else if (h < 5) { r = x; g = 0; b = c; }
-    else { r = c; g = 0; b = x; }
-
-    const scale = 0.1 + a * 0.05;
-    const pulseGain = 0.65 + 0.35 * (Math.exp(-t * 5.0) + 0.8);
-    
-    lemniscateGlow[i].scale.set(scale * 1.3, scale * 1.3, 1);
-    lemniscateGlow[i].material.color.setRGB(
-      r * 3.0 * pulseGain,
-      g * 3.0 * pulseGain,
-      b * 3.0 * pulseGain
-    );
-    lemniscateSprites[i].material.color.setRGB(1, 1, 1);
-
-    // Update text
-    const animatedNum = (frameCount + i) % 100;
-    const label = animatedNum.toString();
-    updateTextSprite(lemniscateSprites[i], label);
-    updateTextSprite(lemniscateGlow[i], label);
-  }
-
-  // Animate stars
-  for (let i = 0; i < NUM_STARS; i++) {
-    const t = (frameCount + i * 8) * 0.01;
-    const a = Math.sin(t) * 0.5 + 0.5;
-    const hue = (Math.sin(t * 0.5) * 0.5 + 0.5) % 1;
     
     const h = hue * 6;
     const c = 1;
@@ -207,7 +150,9 @@ function animate() {
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
+  const pixelRatio = Math.min(window.devicePixelRatio, 2);
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(pixelRatio);
 });
 
 animate();
