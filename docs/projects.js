@@ -13,7 +13,7 @@ const projects = [
   },
   {
     title: "Coming soon",
-    description: `<p>Upcoming projects:</p><ul style="margin: 10px 0; padding-left: 20px; color: #555;"><li>Super-resolution for turbulent flow reconstruction</li><li>Cursor hackthon project</li></ul>`,
+    description: `<p>Upcoming projects:</p><ul style="margin: 10px 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9);"><li>Super-resolution for turbulent flow reconstruction</li><li>Cursor hackthon project</li></ul>`,
     projectUrl: "#",
     isComingSoon: true
   }

@@ -14,12 +14,12 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       line-height: 1.6;
-      color: #333;
+      color: #ffffff;
       margin: 0;
       padding: 0;
       overflow-x: hidden;
       min-height: 100vh;
-      background: linear-gradient(to bottom, #142137 0%, #173b5c 100%);
+      background: transparent;
     }
 
     #bg-canvas {
@@ -37,10 +37,7 @@
       z-index: 1;
       max-width: 1000px;
       margin: 0 auto;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      background: transparent;
       padding: 50px 40px;
       margin-top: 40px;
       margin-bottom: 40px;
@@ -49,14 +46,14 @@
     .back-link {
       display: inline-block;
       margin-bottom: 30px;
-      color: #5dade2;
+      color: #87ceeb;
       text-decoration: none;
       font-size: 14px;
       transition: color 0.3s ease;
     }
 
     .back-link:hover {
-      color: #3498db;
+      color: #b8d4f0;
       text-decoration: underline;
     }
 
@@ -68,7 +65,7 @@
     h1 {
       font-size: 2.5rem;
       margin-bottom: 10px;
-      background: linear-gradient(to bottom, #142137 0%, #173b5c 100%);
+      background: linear-gradient(to bottom, #ffffff 0%, #b8d4f0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -77,19 +74,20 @@
     .summary-section {
       margin: 40px 0;
       padding: 30px;
-      background: #f8f9fa;
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 12px;
-      border-left: 4px solid #5dade2;
+      border-left: 4px solid #87ceeb;
+      backdrop-filter: blur(5px);
     }
 
     .summary-section h2 {
       font-size: 1.5rem;
       margin-bottom: 20px;
-      color: #333;
+      color: #ffffff;
     }
 
     .summary-section p {
-      color: #555;
+      color: rgba(255, 255, 255, 0.9);
       line-height: 1.8;
       font-size: 1.05rem;
     }
@@ -97,25 +95,26 @@
     .report-section {
       margin: 40px 0;
       padding: 30px;
-      background: #f8f9fa;
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 12px;
-      border-left: 4px solid #5dade2;
+      border-left: 4px solid #87ceeb;
+      backdrop-filter: blur(5px);
     }
 
     .report-section h2 {
       font-size: 1.5rem;
       margin-bottom: 20px;
-      color: #333;
+      color: #ffffff;
     }
 
     .pdf-viewer-container {
       position: relative;
       width: 100%;
       height: 900px;
-      border: 1px solid #ddd;
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 8px;
       overflow: hidden;
-      background: #f5f5f5;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .pdf-viewer-wrapper {
@@ -132,7 +131,7 @@
       left: 0;
       right: 0;
       height: 50px;
-      background: #f5f5f5;
+      background: rgba(255, 255, 255, 0.1);
       z-index: 10;
       pointer-events: none;
     }
@@ -147,13 +146,14 @@
     }
 
     .pdf-controls {
-      background: #f8f9fa;
+      background: rgba(255, 255, 255, 0.1);
       padding: 10px;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       display: flex;
       gap: 10px;
       align-items: center;
       flex-wrap: wrap;
+      color: rgba(255, 255, 255, 0.9);
     }
 
     .pdf-controls button {
@@ -199,7 +199,7 @@
       left: 0;
       right: 0;
       height: 50px;
-      background: #f5f5f5;
+      background: rgba(255, 255, 255, 0.1);
       z-index: 10;
       pointer-events: none;
     }
@@ -265,7 +265,7 @@
 
     <div class="report-section">
       <h2>Interactive 3D Visualization</h2>
-      <p style="margin-bottom: 20px; color: #666; font-style: italic;">An interactive 3D visualization illustrating the concept of infinity, featuring randomized "number stars" placed in 3D space using polar coordinates. The lemniscate itself is formed by numbers that change every second, with their colours also randomized. The piece is implemented in ChucK and ChuGL.</p>
+      <p style="margin-bottom: 20px; color: rgba(255, 255, 255, 0.8); font-style: italic;">An interactive 3D visualization illustrating the concept of infinity, featuring randomized "number stars" placed in 3D space using polar coordinates. The lemniscate itself is formed by numbers that change every second, with their colours also randomized. The piece is implemented in ChucK and ChuGL.</p>
       
       <div style="margin: 25px 0;">
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
@@ -280,12 +280,12 @@
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
           </iframe>
         </div>
-        <p style="margin-top: 10px; text-align: center; color: #666; font-size: 14px;">
-          <a href="https://youtu.be/AHmi277GvrI" target="_blank" style="color: #5dade2; text-decoration: none;">Open in YouTube ↗</a>
+        <p style="margin-top: 10px; text-align: center; color: rgba(255, 255, 255, 0.7); font-size: 14px;">
+          <a href="https://youtu.be/AHmi277GvrI" target="_blank" style="color: #87ceeb; text-decoration: none;">Open in YouTube ↗</a>
         </p>
       </div>
       
-      <p style="margin-top: 15px;">Download the source code file below.</p>
+      <p style="margin-top: 15px; color: rgba(255, 255, 255, 0.9);">Download the source code file below.</p>
       
       <div style="margin-top: 15px;">
         <a href="ex.ck" class="report-download" download>Download Code</a>
@@ -294,8 +294,8 @@
 
     <div class="report-section">
       <h2>Modelling the Cables of the Sentosa Suspension Bridge: Parabola or Catenary?</h2>
-      <p style="margin-bottom: 20px; color: #666; font-style: italic;">Used geometric methods to model the shape of the suspension bridge in Sentosa.</p>
-      <p>You can view the full details below or download the PDF.</p>
+      <p style="margin-bottom: 20px; color: rgba(255, 255, 255, 0.8); font-style: italic;">Used geometric methods to model the shape of the suspension bridge in Sentosa.</p>
+      <p style="color: rgba(255, 255, 255, 0.9);">You can view the full details below or download the PDF.</p>
       
       <div style="margin-bottom: 15px;">
         <a href="Math IA.pdf" class="report-download" download="Sentosa_Bridge_Analysis.pdf">Download PDF</a>
@@ -306,7 +306,7 @@
           <button onclick="zoomOut('pdf-viewer-1')">-</button>
           <input type="number" id="zoom-level-1" value="100" min="50" max="200" step="10" onchange="setZoom('pdf-viewer-1', this.value)">
           <button onclick="zoomIn('pdf-viewer-1')">+</button>
-          <span style="margin-left: auto; color: #666; font-size: 14px;">
+          <span style="margin-left: auto; color: rgba(255, 255, 255, 0.7); font-size: 14px;">
             Use scroll to navigate • Click download to save
           </span>
         </div>
@@ -323,8 +323,8 @@
 
     <div class="report-section">
       <h2>Analysis of the Normal Distribution for Assessing Student Performance</h2>
-      <p style="margin-bottom: 20px; color: #666; font-style: italic;">Modelled test scores from three subjects using z scores to compare performance across subjects and show how skewed data can change the result.</p>
-      <p>You can view the full details below or download the PDF.</p>
+      <p style="margin-bottom: 20px; color: rgba(255, 255, 255, 0.8); font-style: italic;">Modelled test scores from three subjects using z scores to compare performance across subjects and show how skewed data can change the result.</p>
+      <p style="color: rgba(255, 255, 255, 0.9);">You can view the full details below or download the PDF.</p>
       
       <div style="margin-bottom: 15px;">
         <a href="Chen Jiayi_ IB2M_HLMathsIA1stTurnitin_T1W9Y2020.pdf" class="report-download" download="Normal_Distribution_Analysis.pdf">Download PDF</a>
@@ -335,7 +335,7 @@
           <button onclick="zoomOut('pdf-viewer-2')">-</button>
           <input type="number" id="zoom-level-2" value="100" min="50" max="200" step="10" onchange="setZoom('pdf-viewer-2', this.value)">
           <button onclick="zoomIn('pdf-viewer-2')">+</button>
-          <span style="margin-left: auto; color: #666; font-size: 14px;">
+          <span style="margin-left: auto; color: rgba(255, 255, 255, 0.7); font-size: 14px;">
             Use scroll to navigate • Click download to save
           </span>
         </div>
