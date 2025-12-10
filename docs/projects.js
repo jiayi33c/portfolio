@@ -7,13 +7,19 @@ const projects = [
     hasVisualization: true
   },
   {
+    title: "WordWave",
+    description: "A multimodal educational application that combines computer vision, real-time audio processing, and an AI agent to create an interactive environment where children learn vocabulary through motion, gesture recognition, and sound-guided exploration.<br><br>I designed it to provide a low-pressure, playful space that supports both language development and mental well-being.",
+    projectUrl: "https://word-wave-five.vercel.app/",
+    githubUrl: "https://github.com/jiayi33c/WordWave"
+  },
+  {
     title: "Side Projects",
     description: "A collection of small projects I worked on over the past few years.",
     projectUrl: "side-projects.html"
   },
   {
     title: "Coming soon",
-    description: `<p>Upcoming projects:</p><ul style="margin: 10px 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9);"><li>Super-resolution for turbulent flow reconstruction</li><li>Cursor hackathon project</li></ul>`,
+    description: `<p>Upcoming projects:</p><ul style="margin: 10px 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9);"><li>Super-resolution for turbulent flow reconstruction</li></ul>`,
     projectUrl: "#",
     isComingSoon: true
   }
@@ -31,6 +37,7 @@ function renderProjects() {
       ${project.hasVisualization ? `<div id="lreversal-viz-${index}" class="project-viz"></div>` : ''}
       ${project.isComingSoon ? '' : `<div class="links">
         <a href="${project.projectUrl}" target="_blank">View Project</a>
+        ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank">View Code</a>` : ''}
       </div>`}
     </div>
   `).join('');
