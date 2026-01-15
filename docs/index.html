@@ -75,11 +75,91 @@
       color: #ffffff;
     }
 
+    .presentations-section {
+      margin: 40px 0;
+    }
+
+    .presentations-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      color: #ffffff;
+    }
+
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
       margin-bottom: 40px;
+    }
+
+    .presentations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .presentations-group {
+      grid-column: 1 / -1;
+    }
+
+    .presentations-group-title {
+      font-size: 1.2rem;
+      margin: 0 0 14px 0;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 0.2px;
+    }
+
+    .presentations-group-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .presentations-accordion {
+      grid-column: 1 / -1;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(5px);
+      overflow: hidden;
+    }
+
+    .presentations-accordion-title {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 18px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #87ceeb; /* blue title */
+      user-select: none;
+    }
+
+    /* Hide default marker, add custom chevron */
+    .presentations-accordion-title::-webkit-details-marker {
+      display: none;
+    }
+    .presentations-accordion-title::after {
+      content: "▸";
+      float: right;
+      color: rgba(255, 255, 255, 0.8);
+      transform: translateY(1px);
+      transition: transform 0.2s ease;
+    }
+    .presentations-accordion[open] .presentations-accordion-title::after {
+      transform: rotate(90deg) translateX(-1px);
+    }
+
+    .presentations-accordion-content {
+      padding: 0 18px 18px 18px;
+    }
+
+    .presentations-reference {
+      margin: 0 0 14px 0;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      font-style: italic;
     }
 
     .project {
@@ -168,10 +248,18 @@
         <!-- Projects will be rendered by projects.js -->
       </div>
     </section>
+
+    <section class="presentations-section">
+      <h2>Presentations</h2>
+      <div class="presentations-grid">
+        <!-- Presentations will be rendered by presentations.js -->
+      </div>
+    </section>
   </div>
 
   <script src="lreversal-viz.js"></script>
   <script src="projects.js"></script>
+  <script src="presentations.js"></script>
   <script src="background.js"></script>
 </body>
 </html>
