@@ -36,6 +36,8 @@ const presentationSections = [
     collapsible: false,
     reference:
       "Choi, J., Chen, Y., Lee, H. K., Kim, H., & Gel, Y. R. SNN-PDE: Learning Dynamic PDEs from Data with Simplicial Neural Networks. 202* (OpenReview).",
+    remark:
+      "Remark. Later work showed that the proposed formulation does not fully respect the chain complex identity ∂² = 0, which affects the theoretical consistency of the method.",
     items: [
       {
         title: "Review: SNN-PDE: Learning Dynamic PDEs from Data with Simplicial Neural Networks",
@@ -60,6 +62,11 @@ function renderPresentations() {
     return `<p class="presentations-reference">${withLinks}</p>`;
   }
 
+  function renderRemark(remark) {
+    if (!remark) return "";
+    return `<p class="presentations-remark">${remark}</p>`;
+  }
+
   function renderCard(p, opts = {}) {
     const encodedPath = encodeURI(p.filePath);
     return `
@@ -67,6 +74,7 @@ function renderPresentations() {
         <h3>${p.title}</h3>
         <p>${p.description}</p>
         ${opts.referenceInside ? renderReference(opts.referenceInside) : ""}
+        ${opts.remarkInside ? renderRemark(opts.remarkInside) : ""}
         <div class="links">
           <a href="${encodedPath}" target="_blank" rel="noopener noreferrer">View</a>
         </div>
@@ -98,7 +106,7 @@ function renderPresentations() {
       if (section.items.length === 1 && section.items[0].title === section.title) {
         return `
           <div class="presentations-group">
-            ${renderCard(section.items[0], { referenceInside: section.reference })}
+            ${renderCard(section.items[0], { referenceInside: section.reference, remarkInside: section.remark })}
           </div>
         `;
       }
