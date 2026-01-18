@@ -18,8 +18,13 @@ const projects = [
     projectUrl: "side-projects.html"
   },
   {
+    title: "Flow Reconstruction",
+    description: "Super-resolution for turbulent flow reconstruction using diffusion-based methods.",
+    projectUrl: "flow-reconstruction.html"
+  },
+  {
     title: "Coming soon",
-    description: `<p>Upcoming projects:</p><ul style="margin: 10px 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9);"><li>Super-resolution for turbulent flow reconstruction</li></ul>`,
+    description: `<p>Upcoming projects:</p><ul style="margin: 10px 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9);"><li>Cursor hackathon project</li></ul>`,
     projectUrl: "#",
     isComingSoon: true
   }
