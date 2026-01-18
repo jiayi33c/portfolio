@@ -19,7 +19,7 @@ const projects = [
   },
   {
     title: "Flow Reconstruction",
-    description: "Super-resolution for turbulent flow reconstruction using diffusion-based methods.",
+    description: "Turbulent flow reconstruction using diffusion-based methods.",
     projectUrl: "flow-reconstruction.html"
   },
   {
