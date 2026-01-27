@@ -23,8 +23,8 @@ const projects = [
     projectUrl: "flow-reconstruction.html"
   },
   {
-    title: "Coming soon",
-    description: `<p>Upcoming projects:</p><ul style="margin: 10px 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9);"><li>Cursor hackathon project</li></ul>`,
+    title: "Masked diffusion for turbulent flow reconstruction",
+    description: `<p>Upcoming projects:</p><ul style="margin: 10px 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9);"><li>Masked diffusion for turbulent flow reconstruction</li></ul>`,
     projectUrl: "#",
     isComingSoon: true
   }
