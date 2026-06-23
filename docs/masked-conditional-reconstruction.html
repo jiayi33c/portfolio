@@ -78,20 +78,27 @@
       line-height: 1.8;
     }
 
-    figure {
-      margin: 30px 0 0;
-      padding: 16px;
+    .comparison-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .comparison-gallery figure {
+      margin: 0;
+      padding: 10px;
       border-radius: 10px;
       background: #ffffff;
     }
 
-    figure img {
+    .comparison-gallery img {
       display: block;
       width: 100%;
       height: auto;
     }
 
-    figcaption {
+    .comparison-gallery figcaption {
       margin-top: 12px;
       color: #30445d;
       font-size: 0.93rem;
@@ -141,6 +148,10 @@
       .comparison-key {
         grid-template-columns: 1fr;
       }
+
+      .comparison-gallery {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -155,10 +166,32 @@
         This project uses a conditional diffusion model to reconstruct turbulent flow fields from masked observations. The model receives a partially observed input and produces a dense flow-field estimate, which can be compared directly with the corresponding ground truth.
       </p>
 
-      <figure>
-        <img src="assets/masked-conditional-reconstruction.png" alt="Input, reconstruction, and ground-truth flow field comparison">
-        <figcaption>Masked input (left), conditional reconstruction (centre), and ground-truth flow (right).</figcaption>
-      </figure>
+      <div class="comparison-gallery" aria-label="Conditional reconstruction comparison gallery">
+        <figure>
+          <img src="assets/conditional-comparison-sample-17.png" alt="Input, reconstruction, and ground-truth flow comparison for sample batch 17">
+          <figcaption>Sample batch 17</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/conditional-comparison-sample-325.png" alt="Input, reconstruction, and ground-truth flow comparison for sample batch 325">
+          <figcaption>Sample batch 325</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/conditional-comparison-sample-330.png" alt="Input, reconstruction, and ground-truth flow comparison for sample batch 330">
+          <figcaption>Sample batch 330</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/conditional-comparison-balanced-1.png" alt="Input, reconstruction, and ground-truth flow comparison for a balanced reconstruction example">
+          <figcaption>Balanced reconstruction 1</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/conditional-comparison-balanced-2.png" alt="Input, reconstruction, and ground-truth flow comparison for a balanced reconstruction example">
+          <figcaption>Balanced reconstruction 2</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/conditional-comparison-balanced-3.png" alt="Input, reconstruction, and ground-truth flow comparison for a balanced reconstruction example">
+          <figcaption>Balanced reconstruction 3</figcaption>
+        </figure>
+      </div>
 
       <div class="comparison-key" aria-label="Comparison key">
         <div>
