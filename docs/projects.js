@@ -23,10 +23,11 @@ const projects = [
     projectUrl: "flow-reconstruction.html"
   },
   {
-    title: "Coming soon",
-    description: `<p>Upcoming projects:</p><ul style="margin: 10px 0; padding-left: 20px; color: rgba(255, 255, 255, 0.9);"><li>Masked diffusion for turbulent flow reconstruction</li></ul>`,
-    projectUrl: "#",
-    isComingSoon: true
+    title: "Masked Conditional Reconstruction",
+    description: "A conditional diffusion model reconstructs turbulent flow fields from masked observations. The preview compares the input, generated reconstruction, and ground-truth flow.",
+    projectUrl: "masked-conditional-reconstruction.html",
+    imageUrl: "assets/masked-conditional-reconstruction.png",
+    imageAlt: "Comparison of a masked flow input, conditional reconstruction, and ground-truth flow"
   }
 ];
 
@@ -39,6 +40,7 @@ function renderProjects() {
     <div class="project">
       <h3>${project.title}</h3>
       ${project.isComingSoon ? project.description : `<p>${project.description}</p>`}
+      ${project.imageUrl ? `<img class="project-preview" src="${project.imageUrl}" alt="${project.imageAlt || ''}" loading="lazy">` : ''}
       ${project.hasVisualization ? `<div id="lreversal-viz-${index}" class="project-viz"></div>` : ''}
       ${project.isComingSoon ? '' : `<div class="links">
         <a href="${project.projectUrl}" target="_blank">View Project</a>
@@ -61,4 +63,3 @@ if (document.readyState === 'loading') {
 } else {
   renderProjects();
 }
-
