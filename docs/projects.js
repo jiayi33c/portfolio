@@ -24,7 +24,7 @@ const projects = [
   },
   {
     title: "Masked Conditional Reconstruction",
-    description: "A conditional diffusion model reconstructs turbulent flow fields from masked observations. The preview compares the input, generated reconstruction, and ground-truth flow.",
+    description: "A conditional diffusion model reconstructs turbulent flow fields from masked observations, with customized elliptical masks aligned with the global velocity direction to incorporate directional flow structure.",
     projectUrl: "masked-conditional-reconstruction.html",
     imageUrl: "assets/conditional-comparison-sample-17.png",
     imageAlt: "Comparison of a masked flow input, conditional reconstruction, and ground-truth flow",
