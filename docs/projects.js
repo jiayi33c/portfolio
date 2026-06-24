@@ -27,7 +27,8 @@ const projects = [
     description: "A conditional diffusion model reconstructs turbulent flow fields from masked observations. The preview compares the input, generated reconstruction, and ground-truth flow.",
     projectUrl: "masked-conditional-reconstruction.html",
     imageUrl: "assets/conditional-comparison-sample-17.png",
-    imageAlt: "Comparison of a masked flow input, conditional reconstruction, and ground-truth flow"
+    imageAlt: "Comparison of a masked flow input, conditional reconstruction, and ground-truth flow",
+    isFeatured: true
   }
 ];
 
@@ -37,10 +38,10 @@ function renderProjects() {
   if (!projectsGrid) return;
 
   projectsGrid.innerHTML = projects.map((project, index) => `
-    <div class="project">
+    <div class="project${project.isFeatured ? ' project-featured' : ''}">
       <h3>${project.title}</h3>
       ${project.isComingSoon ? project.description : `<p>${project.description}</p>`}
-      ${project.imageUrl ? `<img class="project-preview" src="${project.imageUrl}" alt="${project.imageAlt || ''}" loading="lazy">` : ''}
+      ${project.imageUrl ? `<div class="project-preview"><img src="${project.imageUrl}" alt="${project.imageAlt || ''}" loading="lazy"></div>` : ''}
       ${project.hasVisualization ? `<div id="lreversal-viz-${index}" class="project-viz"></div>` : ''}
       ${project.isComingSoon ? '' : `<div class="links">
         <a href="${project.projectUrl}" target="_blank">View Project</a>
