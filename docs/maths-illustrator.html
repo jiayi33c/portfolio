@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maths Illustrator - Chen Jiayi</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: transparent;
+    }
+
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(to bottom, #142137 0%, #173b5c 100%);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 50px 40px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: #87ceeb;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      color: #b8d4f0;
+      text-decoration: underline;
+    }
+
+    .back-link::before {
+      content: "< ";
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      background: linear-gradient(to bottom, #ffffff 0%, #b8d4f0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lead {
+      max-width: 860px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 1.08rem;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .visual-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+      gap: 28px;
+      align-items: center;
+      margin: 34px 0 44px;
+      padding: 30px;
+      border-left: 4px solid #87ceeb;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(5px);
+    }
+
+    .construction-preview {
+      position: relative;
+      min-height: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(26, 59, 89, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26, 59, 89, 0.08) 1px, transparent 1px),
+        #fbfcff;
+      background-size: 28px 28px;
+      box-shadow: inset 0 0 0 1px rgba(20, 33, 55, 0.08);
+    }
+
+    .geo-line {
+      position: absolute;
+      height: 3px;
+      transform-origin: left center;
+      border-radius: 999px;
+      background: #1f76b8;
+    }
+
+    .line-ab {
+      width: 64%;
+      left: 16%;
+      top: 66%;
+      transform: rotate(-8deg);
+    }
+
+    .line-ac {
+      width: 54%;
+      left: 21%;
+      top: 66%;
+      transform: rotate(-54deg);
+    }
+
+    .line-bc {
+      width: 51%;
+      left: 38%;
+      top: 23%;
+      transform: rotate(63deg);
+      background: #4c9f70;
+    }
+
+    .line-mid {
+      width: 44%;
+      left: 32%;
+      top: 48%;
+      transform: rotate(12deg);
+      background: #d86f45;
+    }
+
+    .right-angle {
+      position: absolute;
+      left: 43%;
+      top: 59%;
+      width: 34px;
+      height: 34px;
+      border-left: 3px solid #d86f45;
+      border-bottom: 3px solid #d86f45;
+      transform: rotate(-8deg);
+    }
+
+    .point {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #142137;
+      box-shadow: 0 0 0 4px rgba(31, 118, 184, 0.18);
+    }
+
+    .point span {
+      position: absolute;
+      left: 16px;
+      top: -8px;
+      color: #142137;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .point-a {
+      left: 20%;
+      top: 63%;
+    }
+
+    .point-b {
+      left: 80%;
+      top: 55%;
+    }
+
+    .point-c {
+      left: 39%;
+      top: 18%;
+    }
+
+    .point-m {
+      left: 50%;
+      top: 44%;
+      background: #d86f45;
+    }
+
+    .visual-copy h2,
+    .project-section h2 {
+      color: #ffffff;
+      font-size: 1.45rem;
+      margin-bottom: 14px;
+    }
+
+    .visual-copy p,
+    .project-section p,
+    .project-section li {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 1.02rem;
+      line-height: 1.75;
+    }
+
+    .project-section {
+      margin: 30px 0;
+      padding: 30px;
+      border-left: 4px solid #87ceeb;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(5px);
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .workflow-step {
+      padding-top: 16px;
+      border-top: 2px solid rgba(135, 206, 235, 0.55);
+    }
+
+    .workflow-step h3 {
+      color: #87ceeb;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .workflow-step p {
+      font-size: 0.94rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .output-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 24px;
+      margin-top: 16px;
+      padding-left: 20px;
+    }
+
+    .links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .links a {
+      display: inline-block;
+      padding: 11px 20px;
+      background: linear-gradient(to bottom, #5dade2 0%, #3498db 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .links a:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 860px) {
+      .container {
+        margin: 20px auto;
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .visual-stage {
+        grid-template-columns: 1fr;
+        padding: 22px;
+      }
+
+      .workflow {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .workflow,
+      .output-list {
+        grid-template-columns: 1fr;
+      }
+
+      .construction-preview {
+        min-height: 230px;
+      }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+  <main class="container">
+    <a href="index.html" class="back-link">Back to Portfolio</a>
+    <h1>Maths Illustrator</h1>
+    <p class="lead">
+      Maths Illustrator is an education-focused system for turning typed or uploaded maths and physics questions into worked explanations, similar practice questions, and visual support. Its main technical point is that diagrams are generated from mathematical structure, not from a vague visual prompt alone.
+    </p>
+
+    <section class="visual-stage" aria-label="Maths Illustrator diagram generation overview">
+      <div class="construction-preview" role="img" aria-label="A GeoGebra-style construction preview with labeled points, lines, and a midpoint">
+        <div class="geo-line line-ab"></div>
+        <div class="geo-line line-ac"></div>
+        <div class="geo-line line-bc"></div>
+        <div class="geo-line line-mid"></div>
+        <div class="right-angle"></div>
+        <div class="point point-a"><span>A</span></div>
+        <div class="point point-b"><span>B</span></div>
+        <div class="point point-c"><span>C</span></div>
+        <div class="point point-m"><span>M</span></div>
+      </div>
+      <div class="visual-copy">
+        <h2>Beyond Generic Image Generation</h2>
+        <p>
+          Ordinary diffusion images can look polished while getting geometry wrong. This project uses model reasoning to identify the construction first, then renders geometry through GeoGebra so labels, intersections, midpoints, perpendiculars, and segment relationships remain tied to the problem.
+        </p>
+      </div>
+    </section>
+
+    <section class="project-section">
+      <h2>How It Works</h2>
+      <p>
+        The system reads the question, solves it, decides whether a diagram is useful, and chooses the right visual path. Geometry questions become structured GeoGebra commands, while non-geometry visual problems such as area, graphs, spatial reasoning, or physics scenarios can be routed through constrained illustration prompts derived from the solved question.
+      </p>
+
+      <div class="workflow" aria-label="Project workflow">
+        <div class="workflow-step">
+          <h3>Understand</h3>
+          <p>Parse typed text or an uploaded question image and recover the mathematical intent.</p>
+        </div>
+        <div class="workflow-step">
+          <h3>Solve</h3>
+          <p>Produce a worked explanation, final answer, and similar practice questions.</p>
+        </div>
+        <div class="workflow-step">
+          <h3>Construct</h3>
+          <p>Translate geometry into GeoGebra commands or create a constrained visual prompt.</p>
+        </div>
+        <div class="workflow-step">
+          <h3>Export</h3>
+          <p>Show diagrams on the webpage and embed snapshots into the Word report.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-section">
+      <h2>Project Output</h2>
+      <p>
+        The result page and report are designed for worksheet-style review, with diagrams attached to both the original question and generated practice questions where relevant.
+      </p>
+      <ul class="output-list">
+        <li>Recognized question text</li>
+        <li>Worked solution steps</li>
+        <li>Final answer</li>
+        <li>Three similar practice questions</li>
+        <li>Interactive GeoGebra diagrams</li>
+        <li>Word report with embedded diagram snapshots</li>
+      </ul>
+    </section>
+
+    <section class="project-section">
+      <h2>Why It Matters</h2>
+      <p>
+        The advanced part is the split between reasoning and rendering. The app treats mathematical and physical illustrations as constrained technical objects, so the final visual is expected to support the actual problem rather than merely resemble a textbook image.
+      </p>
+      <div class="links">
+        <a href="https://github.com/jiayi33c/Maths-illustrator" target="_blank" rel="noopener noreferrer">View Code</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="background.js"></script>
+</body>
+</html>
