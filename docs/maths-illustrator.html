@@ -71,128 +71,12 @@
       margin-bottom: 32px;
     }
 
-    .visual-stage {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
-      gap: 28px;
-      align-items: center;
-      margin: 34px 0 44px;
-      padding: 30px;
-      border-left: 4px solid #87ceeb;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(5px);
-    }
-
-    .construction-preview {
-      position: relative;
-      min-height: 300px;
-      border-radius: 10px;
-      overflow: hidden;
-      background:
-        linear-gradient(rgba(26, 59, 89, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(26, 59, 89, 0.08) 1px, transparent 1px),
-        #fbfcff;
-      background-size: 28px 28px;
-      box-shadow: inset 0 0 0 1px rgba(20, 33, 55, 0.08);
-    }
-
-    .geo-line {
-      position: absolute;
-      height: 3px;
-      transform-origin: left center;
-      border-radius: 999px;
-      background: #1f76b8;
-    }
-
-    .line-ab {
-      width: 64%;
-      left: 16%;
-      top: 66%;
-      transform: rotate(-8deg);
-    }
-
-    .line-ac {
-      width: 54%;
-      left: 21%;
-      top: 66%;
-      transform: rotate(-54deg);
-    }
-
-    .line-bc {
-      width: 51%;
-      left: 38%;
-      top: 23%;
-      transform: rotate(63deg);
-      background: #4c9f70;
-    }
-
-    .line-mid {
-      width: 44%;
-      left: 32%;
-      top: 48%;
-      transform: rotate(12deg);
-      background: #d86f45;
-    }
-
-    .right-angle {
-      position: absolute;
-      left: 43%;
-      top: 59%;
-      width: 34px;
-      height: 34px;
-      border-left: 3px solid #d86f45;
-      border-bottom: 3px solid #d86f45;
-      transform: rotate(-8deg);
-    }
-
-    .point {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #142137;
-      box-shadow: 0 0 0 4px rgba(31, 118, 184, 0.18);
-    }
-
-    .point span {
-      position: absolute;
-      left: 16px;
-      top: -8px;
-      color: #142137;
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-
-    .point-a {
-      left: 20%;
-      top: 63%;
-    }
-
-    .point-b {
-      left: 80%;
-      top: 55%;
-    }
-
-    .point-c {
-      left: 39%;
-      top: 18%;
-    }
-
-    .point-m {
-      left: 50%;
-      top: 44%;
-      background: #d86f45;
-    }
-
-    .visual-copy h2,
     .project-section h2 {
       color: #ffffff;
       font-size: 1.45rem;
       margin-bottom: 14px;
     }
 
-    .visual-copy p,
     .project-section p,
     .project-section li {
       color: rgba(255, 255, 255, 0.88);
@@ -265,6 +149,23 @@
       transform: translateY(-2px);
     }
 
+    .repo-citation {
+      margin-top: 16px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.96rem;
+    }
+
+    .repo-citation a {
+      color: #87ceeb;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .repo-citation a:hover {
+      color: #b8d4f0;
+      text-decoration: underline;
+    }
+
     @media (max-width: 860px) {
       .container {
         margin: 20px auto;
@@ -273,11 +174,6 @@
 
       h1 {
         font-size: 2rem;
-      }
-
-      .visual-stage {
-        grid-template-columns: 1fr;
-        padding: 22px;
       }
 
       .workflow {
@@ -291,9 +187,6 @@
         grid-template-columns: 1fr;
       }
 
-      .construction-preview {
-        min-height: 230px;
-      }
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -307,24 +200,11 @@
       Maths Illustrator is an education-focused system for turning typed or uploaded maths and physics questions into worked explanations, similar practice questions, and visual support. Its main technical point is that diagrams are generated from mathematical structure, not from a vague visual prompt alone.
     </p>
 
-    <section class="visual-stage" aria-label="Maths Illustrator diagram generation overview">
-      <div class="construction-preview" role="img" aria-label="A GeoGebra-style construction preview with labeled points, lines, and a midpoint">
-        <div class="geo-line line-ab"></div>
-        <div class="geo-line line-ac"></div>
-        <div class="geo-line line-bc"></div>
-        <div class="geo-line line-mid"></div>
-        <div class="right-angle"></div>
-        <div class="point point-a"><span>A</span></div>
-        <div class="point point-b"><span>B</span></div>
-        <div class="point point-c"><span>C</span></div>
-        <div class="point point-m"><span>M</span></div>
-      </div>
-      <div class="visual-copy">
-        <h2>Beyond Generic Image Generation</h2>
-        <p>
-          Ordinary diffusion images can look polished while getting geometry wrong. This project uses model reasoning to identify the construction first, then renders geometry through GeoGebra so labels, intersections, midpoints, perpendiculars, and segment relationships remain tied to the problem.
-        </p>
-      </div>
+    <section class="project-section">
+      <h2>Beyond Generic Image Generation</h2>
+      <p>
+        Ordinary diffusion images can look polished while getting geometry wrong. This project uses model reasoning to identify the construction first, then renders geometry through GeoGebra so labels, intersections, midpoints, perpendiculars, and segment relationships remain tied to the problem.
+      </p>
     </section>
 
     <section class="project-section">
@@ -372,6 +252,9 @@
       <h2>Why It Matters</h2>
       <p>
         The advanced part is the split between reasoning and rendering. The app treats mathematical and physical illustrations as constrained technical objects, so the final visual is expected to support the actual problem rather than merely resemble a textbook image.
+      </p>
+      <p class="repo-citation">
+        GitHub repository: <a href="https://github.com/jiayi33c/Maths-illustrator" target="_blank" rel="noopener noreferrer">https://github.com/jiayi33c/Maths-illustrator</a>
       </p>
       <div class="links">
         <a href="https://github.com/jiayi33c/Maths-illustrator" target="_blank" rel="noopener noreferrer">View Code</a>
