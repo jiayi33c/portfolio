@@ -13,8 +13,8 @@ const projects = [
     githubUrl: "https://github.com/jiayi33c/WordWave"
   },
   {
-    title: "Maths Illustrator",
-    description: "An education-focused app that turns typed or uploaded maths and physics questions into worked explanations, similar practice questions, GeoGebra diagrams, and Word reports. It separates reasoning from illustration so visual outputs preserve mathematical constraints instead of relying on generic image generation.",
+    title: "Scientific Diagram Illustrator",
+    description: "An education-focused app that turns typed or uploaded maths and physics questions into worked explanations, similar practice questions, GeoGebra diagrams, and Word reports. It separates scientific reasoning from illustration so visual outputs preserve mathematical and physical constraints instead of relying on generic image generation.",
     projectUrl: "maths-illustrator.html",
     githubUrl: "https://github.com/jiayi33c/Maths-illustrator"
   },
