@@ -118,11 +118,27 @@
     }
 
     .output-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px 24px;
+      display: block;
       margin-top: 16px;
       padding-left: 20px;
+    }
+
+    .output-list li {
+      margin: 4px 0;
+    }
+
+    .plain-section {
+      margin: 42px 0;
+      padding: 0;
+      background: transparent;
+      border-left: 0;
+      border-radius: 0;
+      backdrop-filter: none;
+    }
+
+    .plain-section + .plain-section {
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 36px;
     }
 
     .links {
@@ -151,19 +167,22 @@
 
     .repo-citation {
       margin-top: 16px;
-      color: rgba(255, 255, 255, 0.82);
-      font-size: 0.96rem;
+      color: #ffffff;
+      font-size: 1.02rem;
+      font-weight: 700;
+      line-height: 1.6;
     }
 
     .repo-citation a {
-      color: #87ceeb;
+      color: #ffffff;
       text-decoration: none;
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.65);
       overflow-wrap: anywhere;
     }
 
     .repo-citation a:hover {
       color: #b8d4f0;
-      text-decoration: underline;
+      border-bottom-color: #b8d4f0;
     }
 
     @media (max-width: 860px) {
@@ -233,36 +252,35 @@
       </div>
     </section>
 
-    <section class="project-section">
+    <section class="project-section plain-section">
       <h2>Project Output</h2>
       <p>
-        The result page and report are designed for worksheet-style review, with diagrams attached to both the original question and generated practice questions where relevant.
+        The system produces a worksheet-style result page and report that combine problem understanding, reasoning, diagram generation, and practice-question creation.
       </p>
       <ul class="output-list">
         <li>Recognized question text</li>
-        <li>Worked solution steps</li>
+        <li>Step-by-step worked solution</li>
         <li>Final answer</li>
-        <li>Three similar practice questions</li>
-        <li>Interactive GeoGebra diagrams</li>
-        <li>Word report with embedded diagram snapshots</li>
+        <li>Interactive GeoGebra diagram where applicable</li>
+        <li>Three related practice questions</li>
+        <li>Downloadable Word report with embedded diagram snapshots</li>
       </ul>
     </section>
 
-    <section class="project-section">
+    <section class="project-section plain-section">
       <h2>Why It Matters</h2>
       <p>
-        The advanced part is the split between reasoning and rendering. The app treats mathematical and physical illustrations as constrained technical objects, so the final visual is expected to support the actual problem rather than merely resemble a textbook image.
+        The key idea is to separate <strong>reasoning from visual rendering</strong>. Instead of relying on a generic diffusion model to directly generate a scientific diagram, the system first interprets the mathematical or physical structure of the problem, then renders the diagram as a constrained technical object.
+      </p>
+      <p>
+        This makes the final visual more useful for learning: it is designed to support the actual question, preserve important geometric or physical relationships, and avoid producing an image that only loosely resembles a textbook illustration.
       </p>
       <p class="repo-citation">
-        Website: <a href="https://gemini-math-illustrator.onrender.com" target="_blank" rel="noopener noreferrer">https://gemini-math-illustrator.onrender.com</a>
+        Website: <a href="https://gemini-math-illustrator.onrender.com" target="_blank" rel="noopener noreferrer">https://gemini-math-illustrator.onrender.com &#8599;</a>
       </p>
       <p class="repo-citation">
-        GitHub repository: <a href="https://github.com/jiayi33c/Maths-illustrator" target="_blank" rel="noopener noreferrer">https://github.com/jiayi33c/Maths-illustrator</a>
+        GitHub repository: <a href="https://github.com/jiayi33c/Maths-illustrator" target="_blank" rel="noopener noreferrer">https://github.com/jiayi33c/Maths-illustrator &#8599;</a>
       </p>
-      <div class="links">
-        <a href="https://gemini-math-illustrator.onrender.com" target="_blank" rel="noopener noreferrer">Open Website</a>
-        <a href="https://github.com/jiayi33c/Maths-illustrator" target="_blank" rel="noopener noreferrer">View Code</a>
-      </div>
     </section>
   </main>
 
