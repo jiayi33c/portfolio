@@ -16,6 +16,7 @@ const projects = [
     title: "Scientific Diagram Illustrator",
     description: "An education-focused app that turns typed or uploaded maths and physics questions into worked explanations, similar practice questions, GeoGebra diagrams, and Word reports. It separates scientific reasoning from illustration so visual outputs preserve mathematical and physical constraints instead of relying on generic image generation.",
     projectUrl: "maths-illustrator.html",
+    websiteUrl: "https://gemini-math-illustrator.onrender.com",
     githubUrl: "https://github.com/jiayi33c/Maths-illustrator"
   },
   {
@@ -51,6 +52,7 @@ function renderProjects() {
       ${project.hasVisualization ? `<div id="lreversal-viz-${index}" class="project-viz"></div>` : ''}
       ${project.isComingSoon ? '' : `<div class="links">
         <a href="${project.projectUrl}" target="_blank">View Project</a>
+        ${project.websiteUrl ? `<a href="${project.websiteUrl}" target="_blank">Website</a>` : ''}
         ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank">View Code</a>` : ''}
       </div>`}
     </div>
